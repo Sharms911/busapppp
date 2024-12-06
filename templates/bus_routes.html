@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adelaide Metro Bus Routes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f1f1;
+            margin: 0;
+            padding: 50px;
+        }
+        h1 {
+            font-size: 2.5em;
+            color: #007BFF;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 15px;
+            font-size: 1.1em;
+            border-radius: 5px;
+            cursor: pointer;
+            border: none;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .back-button {
+            margin-top: 20px;
+            display: inline-block;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Available Bus Routes</h1>
+
+    {% if directions %}
+        {% if directions|length > 0 %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Bus Line</th>
+                        <th>Departure Stop</th>
+                        <th>Arrival Stop</th>
+                        <th>Headsign</th>
+                        <th>Departure Time</th>
+                        <th>Arrival Time</th>
+                        <th>Time Until Departure</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for direction in directions %}
+                    <tr>
+                        <td>{{ direction.line }}</td>
+                        <td>{{ direction.departure_stop }}</td>
+                        <td>{{ direction.arrival_stop }}</td>
+                        <td>{{ direction.headsign }}</td>
+                        <td>{{ direction.departure_time }}</td>
+                        <td>{{ direction.arrival_time }}</td>
+                        <td>{{ direction.time_until_departure }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No bus routes found for your selected locations.</p>
+        {% endif %}
+    {% else %}
+        <p>Please enter the start and end locations to view bus routes.</p>
+    {% endif %}
+
+    <a href="/" class="back-button">Back to Home</a>
+</body>
+</html>

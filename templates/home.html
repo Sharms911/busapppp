@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adelaide Metro Bus Routes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f1f1;
+            margin: 0;
+            padding: 50px;
+        }
+        h1 {
+            font-size: 2.5em;
+            color: #007BFF;
+        }
+        form {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 100%;
+            font-size: 1em;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 15px;
+            font-size: 1.1em;
+            border-radius: 5px;
+            cursor: pointer;
+            border: none;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Adelaide Metro Bus Routes</h1>
+    <form method="POST" action="/bus-routes">
+        <input type="text" name="start" placeholder="Enter start location" required>
+        <input type="text" name="end" placeholder="Enter end location" required>
+        <button type="submit">Get Bus Routes</button>
+    </form>
+</body>
+</html>

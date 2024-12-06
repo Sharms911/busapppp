@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adelaide Metro Bus Routes</title>
+    <!-- Materialize CSS link -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #000000;
+            color: #FFFFFF;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .card {
+            background-color: #212121;
+            border-radius: 8px;
+        }
+
+        .card-content {
+            color: white;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+        }
+
+        .route-list {
+            margin-top: 30px;
+        }
+
+        .route-item {
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .btn {
+            background-color: #6200EE;
+            color: white;
+        }
+
+        .btn:hover {
+            background-color: #3700B3;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Adelaide Metro Bus Routes</h1>
+
+        <form action="/get-directions" method="post" id="route-form">
+            <div class="input-field">
+                <input type="text" id="start-location" name="start" required>
+                <label for="start-location">Start Location</label>
+            </div>
+            <div class="input-field">
+                <input type="text" id="end-location" name="end" required>
+                <label for="end-location">Destination</label>
+            </div>
+            <button type="submit" class="btn">Get Bus Routes</button>
+        </form>
+
+        <div class="route-list">
+            {% if routes %}
+                {% for route in routes %}
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">{{ route['line'] }}</span>
+                            <p><strong>Departure Time:</strong> {{ route['departure_time'] }}</p>
+                            <p><strong>Arrival Time:</strong> {{ route['arrival_time'] }}</p>
+                            <p><strong>Duration:</strong> {{ route['duration'] }}</p>
+                            <p><strong>Steps:</strong></p>
+                            <ul>
+                                {% for step in route['steps'] %}
+                                    <li>{{ step }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Materialize JS and jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+
+</html>
